@@ -4,6 +4,8 @@ One-hour period dramedy. Working title. **A fiction inspired by Chuck Williams a
 
 You own **prose and world**. See `AGENTS.md` for the tooling side (also yours here).
 
+**Workflow layer:** this project uses **ponytail** (`DietrichGebert/ponytail`) and **gstack** (`garrytan/gstack`) — our standard Claude Code skill/workflow repos, installed into `~/.claude`. See `README.md` § "The workflow layer" for setup and why it re-installs each session. gstack's slash-commands are available via its skill router.
+
 ---
 
 ## 1. What this is, and what it is not

@@ -14,19 +14,27 @@ One-hour period **dramedy**. Working title. A **fiction inspired by** Chuck Will
 | `scripts/` | Fountain source (`scripts/pilot/pilot.fountain`). |
 | `deck/` | Pitch materials — downstream of a working script. |
 | `legal/` | The short real-person / trademark guardrail. |
-| `tools/` | Project-local tooling stubs (the real toolchain lives in **gstack**). |
+| `tools/` | Project-local scripts only (workflow layer is ponytail + gstack, installed globally). |
 | `dist/` | Build output (gitignored). |
 
 Read `CLAUDE.md` (editorial) and `AGENTS.md` (tooling) first.
 
-## The two companion repos
+## The workflow layer: ponytail + gstack
 
-This project is built with a reusable IP & story-development setup, split into two repos so the expertise carries to future projects:
+We reuse two standard Claude Code repos across almost every project. They are **not** part of this repo — they install into `~/.claude`:
 
-- **ponytail** — a Claude Code plugin: the skills (`/story-research`, `/world-bible`, `/structure-lab`, `/character-bible`, `/fountain-draft`, `/pitch-deck`) and subagents (`research-scout`, `continuity-checker`, `script-doctor`) that drive the work.
-- **gstack** — the Node toolchain: `continuity-lint`, `script-build` (Fountain → PDF via afterwriting), `structure-import`.
+- **ponytail** — https://github.com/DietrichGebert/ponytail — "write the minimum viable code / don't over-build."
+  ```
+  /plugin marketplace add DietrichGebert/ponytail
+  /plugin install ponytail@ponytail
+  ```
+  (Also wired for this project in `.claude/settings.json`.)
+- **gstack** — https://github.com/garrytan/gstack — the opinionated slash-command workflow suite.
+  ```
+  git clone --single-branch --depth 1 https://github.com/garrytan/gstack.git ~/.claude/skills/gstack && (cd ~/.claude/skills/gstack && ./setup)
+  ```
 
-Enable the plugin: `/plugin marketplace add <ponytail-repo-url>` then `/plugin install`. See `.claude/settings.json`.
+**Why re-install every session?** This is an ephemeral cloud environment — `~/.claude` resets when the session ends, so a global install doesn't survive. Put both commands in the **environment's setup script** (Claude Code web → environment settings) and every session, on every project, gets them automatically. `ponytail` also persists per-project via the `.claude/settings.json` above.
 
 ## Workflow (one-directional)
 

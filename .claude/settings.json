@@ -3,11 +3,11 @@
     "ponytail": {
       "source": {
         "source": "github",
-        "repo": "Damnjjwtf/ponytail"
+        "repo": "DietrichGebert/ponytail"
       }
     }
   },
   "enabledPlugins": [
-    "story-dev@ponytail"
+    "ponytail@ponytail"
   ]
 }
