@@ -1,0 +1,14 @@
+# build output
+dist/
+
+# secrets
+.env
+.env.*
+
+# node
+node_modules/
+npm-debug.log*
+
+# os / editor
+.DS_Store
+*.swp
