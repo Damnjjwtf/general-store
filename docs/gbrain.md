@@ -44,6 +44,11 @@ Run it after substantial `bible/` or `scripts/` changes so the graph reflects ne
 - The typed graph from `bible/graph.md` powers the continuity queries listed there (dangling refs, timeline drift, engine coverage) as real queries, not grep heuristics.
 - Cross-session memory of plans/retros/decisions via the gstack ↔ GBrain integration.
 
-## The one thing I need from you to flip it live
+## What I need to flip it live (two inputs, both secrets → not via chat)
 
-Your Supabase Session Pooler URL (or a go-ahead to try ephemeral PGLite for a single-session demo), plus an embedding key available in the environment. Give me either and I'll drive `/setup-gbrain` + first `/sync-gbrain` and confirm a write→search round-trip.
+Checked this environment: `gbrain` isn't installed, the `claude` CLI **is** present (so MCP registration will work), but there is **no embedding key and no DB URL** available. Both are yours to supply. The safe way is to add them as **environment variables** in the Claude Code web env settings (never pasted into chat, never committed):
+
+- `GBRAIN_DATABASE_URL` — your Supabase **Session Pooler** URL (port 6543). Cloud, so the brain persists across these ephemeral sessions.
+- `OPENAI_API_KEY` (or `VOYAGE_API_KEY`) — for embeddings during sync.
+
+Once those exist in the environment, I (or the workflow-layer hook) run `/setup-gbrain` (Path 1) → `/sync-gbrain`, set this repo's policy to **read-write**, and I confirm a write→search round-trip. A one-session PGLite demo is possible too, but it still needs an embedding key and won't persist — so cloud is the right call.
