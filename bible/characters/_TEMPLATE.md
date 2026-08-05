@@ -18,24 +18,24 @@ What role do they serve in the engine? (The exacting teacher? The one being taug
 - **Needs:** ...
 
 ## The object they command
-The good/craft they know cold — the thing they can [[objects/<object>|explain]], and the [[motifs#<motif>|motif]] it carries. (This wires an `Object --explains--> Motif` path through them.)
+The good/craft they know cold — the thing they can [[bible/world/objects/<object>|explain]], and the [[bible/world/motifs#<motif>|motif]] it carries. (This wires an `Object --explains--> Motif` path through them.)
 
 ## Contradictions
 The tension that makes them a person, not a position.
 
 ## Relationships
 Use explicit links so the graph builds edges. One bullet = one typed edge.
-- teaches → [[<Other Character>]]
-- mentor of → [[<Other Character>]]
-- runs → [[world/<Place or Institution>]]
-- rival of → [[<Institution>]]
+- teaches → [[bible/characters/<Other Character>]]
+- mentor of → [[bible/characters/<Other Character>]]
+- runs → [[bible/world/<Place or Institution>]]
+- rival of → [[bible/world/<Institution>]]
 
 ## Voice
 Two or three lines only they would say. Warm through exactitude, never sentiment.
 
 ## Inspired by
 Real-world ore this character drew from — points **out** into research, never treated as fact.
-- inspired-by → [[../../research/<file>]]  ( <what was borrowed; how the character diverges> )
+- inspired-by → [[research/<file>]]  ( <what was borrowed; how the character diverges> )
 
 <!--
 Graph note: `type:` frontmatter + the `[[wikilinks]]` above are what GBrain and

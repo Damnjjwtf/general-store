@@ -1,0 +1,38 @@
+{
+  "collapse-filter": false,
+  "search": "-path:tools -path:templates -path:.claude -path:.obsidian -path:dist -path:node_modules -path:docs -file:README",
+  "showTags": true,
+  "showAttachments": false,
+  "hideUnresolved": false,
+  "showOrphans": true,
+  "collapse-color-groups": false,
+  "colorGroups": [
+    {
+      "query": "path:bible/characters",
+      "color": { "a": 1, "rgb": 14721072 }
+    },
+    {
+      "query": "path:bible/world",
+      "color": { "a": 1, "rgb": 3178720 }
+    },
+    {
+      "query": "path:research",
+      "color": { "a": 1, "rgb": 8421504 }
+    },
+    {
+      "query": "path:structure",
+      "color": { "a": 1, "rgb": 3195008 }
+    }
+  ],
+  "collapse-display": false,
+  "showArrow": true,
+  "textFadeMultiplier": 0,
+  "nodeSizeMultiplier": 1.1,
+  "lineSizeMultiplier": 1,
+  "collapse-forces": false,
+  "centerStrength": 0.5,
+  "repelStrength": 12,
+  "linkStrength": 1,
+  "linkDistance": 260,
+  "scale": 1
+}

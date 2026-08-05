@@ -9,6 +9,11 @@ dist/
 node_modules/
 npm-debug.log*
 
+# obsidian: keep vault config committed, ignore per-user UI state
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache
+
 # os / editor
 .DS_Store
 *.swp
