@@ -15,8 +15,9 @@ The tools are commodities. The product is the **method** — the discipline that
 | **Memory & graph** | the IP as a typed knowledge graph, cross-session recall | GBrain + `bible/graph.md` (pending keys) |
 | **Research** | inspiration + market intel | Exa · Browser Use · NotebookLM · last30days |
 | **Art** | concept, character, key art, deck, IP identity | higgsfield · Adobe · ComfyUI + `art/tone-board.md` |
-| **Structure Lab** | how the story is *built* | **built & shipped** as `Damnjjwtf/A-Halloween-Story`; reconciled in `structure-lab.md` — verdict: **wrap it** |
+| **Structure Lab** | how the story is *built* | **built & shipped** as `Damnjjwtf/A-Halloween-Story`; reconciled in `structure-lab.md` — verdict: **wrap it**. TV/streaming corpus added: `corpus/tv-streaming/` |
 | **Want Engine** | what drives character and scene | `Damnjjwtf/want-engine` — **empty placeholder repo** (README only, `cced70b`). Greenfield; needs a spec before anything is built |
+| **Ingest interview** | what kind of IP is this, and which frameworks apply | specced in `ingest-interview.md` — branches Series / Feature / Franchise-transmedia |
 
 ## Still to build
 Script build (Fountain → PDF) · deck production · `ip-runner new <title>` bootstrap · rights/legal management across projects · the question of whether Hermes *runs* stages on a schedule or IP Runner stays hands-on.
