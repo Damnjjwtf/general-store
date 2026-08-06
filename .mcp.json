@@ -15,6 +15,16 @@
         "PLAYWRIGHT_BROWSERS_PATH": "/opt/pw-browsers",
         "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD": "1"
       }
+    },
+    "notebooklm": {
+      "command": "uvx",
+      "args": ["--from", "notebooklm-py[browser]", "notebooklm-mcp"],
+      "env": {
+        "NOTEBOOKLM_AUTH_JSON": "${NOTEBOOKLM_AUTH_JSON}",
+        "NOTEBOOKLM_MCP_TRANSPORT": "stdio",
+        "PLAYWRIGHT_BROWSERS_PATH": "/opt/pw-browsers",
+        "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD": "1"
+      }
     }
   }
 }

@@ -30,13 +30,27 @@ The tools that feed `research/` (real-world inspiration → texture for the fict
 - **Note:** this is the Claude-Code-native MCP path — independent of GenLens's `GENLENS_BROWSER_ENABLED` VPS flag.
 - **Status now:** config committed; `OPENAI_API_KEY` not yet in the environment, so it won't load until you add it.
 
-## Roadmap (next layer)
+### NotebookLM — source synthesis (MCP) — *wired, pending Google auth*
+[teng-lin/notebooklm-py](https://github.com/teng-lin/notebooklm-py). Unofficial NotebookLM client: ingest a pile of period sources into a notebook, then **query and synthesize** them (grounded answers with citations, even audio overviews) — the "make sense of the research pile" layer.
 
-| Layer | Repo | What it adds here | To switch on |
-| --- | --- | --- | --- |
-| **NotebookLM** | [teng-lin/notebooklm-py](https://github.com/teng-lin/notebooklm-py) | ingest a pile of period sources, query/synthesize them (even audio overviews) | complete Google auth |
+- **Config:** `.mcp.json` runs `uvx --from notebooklm-py[browser] notebooklm-mcp` (stdio). First launch `uvx`-installs it once.
+- **Auth is the gate, not an API key.** NotebookLM has no official API — the tool drives your logged-in Google session. This headless container has no browser session, so the only workable path is the **inline cookie payload**:
+  1. On **your own machine**: `uv tool install "notebooklm-py[browser]"` then `notebooklm login` (or `notebooklm login --browser-cookies chrome`). Verify: `notebooklm auth check --test`.
+  2. That writes `storage_state.json`. Put its **entire contents** into the env var `NOTEBOOKLM_AUTH_JSON` in the Claude Code web env settings (it's your Google session — env only, never committed, and it expires, so it'll need refreshing).
+- **Status now:** config committed; `NOTEBOOKLM_AUTH_JSON` not set, so it won't load until you complete the login and paste the payload.
 
-Priority order was **Exa** (done — broad semantic reach), then **Browser Use** (done — deep archival), then **NotebookLM** (synthesis). last30days is the market-intel corner, not the period-texture corner.
+## Environment inputs — switch the whole stack on
+
+Add these in the Claude Code web env settings (never in chat, never in the repo). Then, next session, approve each project MCP server once.
+
+| Env var | Turns on | Where it comes from |
+| --- | --- | --- |
+| `EXA_API_KEY` | Exa semantic search | Exa dashboard |
+| `OPENAI_API_KEY` | Browser Use (drives the browser) **+** GBrain embeddings | OpenAI |
+| `GBRAIN_DATABASE_URL` | GBrain persistent memory | Supabase Session Pooler URL |
+| `NOTEBOOKLM_AUTH_JSON` | NotebookLM | `notebooklm login` on your machine → `storage_state.json` contents |
+
+Priority order for a period piece: **Exa** (broad semantic reach) → **Browser Use** (deep archival) → **NotebookLM** (synthesis). last30days is the market-intel corner, not period texture.
 
 ## Where research goes
 Everything gathered lands in `research/` as **inspiration, not canon** (see `research/README.md`). It only becomes binding when a detail is deliberately moved into `bible/`.
