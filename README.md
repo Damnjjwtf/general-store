@@ -13,6 +13,7 @@ One-hour period **dramedy**. Working title. A **fiction inspired by** Chuck Will
 | `structure/` | Structure Lab candidates + the locked `selected.md`. |
 | `scripts/` | Fountain source (`scripts/pilot/pilot.fountain`). |
 | `deck/` | Pitch materials — downstream of a working script. |
+| `art/` | Visual development — tone, deck design system, title treatment (see `docs/art-stack.md`). |
 | `legal/` | The short real-person / trademark guardrail. |
 | `tools/` | Project-local scripts only (workflow layer is ponytail + gstack, installed globally). |
 | `dist/` | Build output (gitignored). |
