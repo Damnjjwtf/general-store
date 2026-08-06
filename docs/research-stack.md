@@ -22,14 +22,21 @@ The tools that feed `research/` (real-world inspiration → texture for the fict
 - **To switch on:** add `EXA_API_KEY` to the environment variables (Claude Code web env settings), same place as the GBrain keys. On next session, Claude Code will ask you to approve the `exa` project MCP server — approve it once.
 - **Status now:** config committed; `EXA_API_KEY` not yet in the environment, so the tools won't load until you add it.
 
-## Roadmap (next layers)
+### Browser Use — agentic browser (MCP) — *wired, pending key*
+[browser-use/browser-use](https://github.com/browser-use/browser-use). An LLM-driven browser that navigates, clicks, and extracts — for **deep archival digs** Exa can't reach on its own (digitized catalogs behind pagination, newspaper/museum collections, gated archives).
 
-| Layer | Repo / flag | What it adds here | To switch on |
+- **Config:** `.mcp.json` runs `uvx --from browser-use[cli] browser-use --mcp`. First launch uses `uvx` to install browser-use (one-time, needs network). Pointed at this environment's **pre-installed Chromium** (`PLAYWRIGHT_BROWSERS_PATH=/opt/pw-browsers`, `PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1`) so it doesn't hit the blocked Playwright download.
+- **Needs an LLM key** to drive the browser — set `OPENAI_API_KEY` in the env (also covers GBrain embeddings). Browser Use can be pointed at Anthropic/Gemini instead via its own config if you prefer.
+- **Note:** this is the Claude-Code-native MCP path — independent of GenLens's `GENLENS_BROWSER_ENABLED` VPS flag.
+- **Status now:** config committed; `OPENAI_API_KEY` not yet in the environment, so it won't load until you add it.
+
+## Roadmap (next layer)
+
+| Layer | Repo | What it adds here | To switch on |
 | --- | --- | --- | --- |
-| **Browser Use** | [browser-use/browser-use](https://github.com/browser-use/browser-use) (`GENLENS_BROWSER_ENABLED`) | deep archival digs (digitized catalogs, newspaper/museum collections) | enable flag + provision the VPS venv |
 | **NotebookLM** | [teng-lin/notebooklm-py](https://github.com/teng-lin/notebooklm-py) | ingest a pile of period sources, query/synthesize them (even audio overviews) | complete Google auth |
 
-Priority order was **Exa** first (done — broad semantic reach), then **Browser Use** (deep archival), then **NotebookLM** (synthesis). last30days is the market-intel corner, not the period-texture corner.
+Priority order was **Exa** (done — broad semantic reach), then **Browser Use** (done — deep archival), then **NotebookLM** (synthesis). last30days is the market-intel corner, not the period-texture corner.
 
 ## Where research goes
 Everything gathered lands in `research/` as **inspiration, not canon** (see `research/README.md`). It only becomes binding when a detail is deliberately moved into `bible/`.

@@ -6,6 +6,15 @@
       "env": {
         "EXA_API_KEY": "${EXA_API_KEY}"
       }
+    },
+    "browser-use": {
+      "command": "uvx",
+      "args": ["--from", "browser-use[cli]", "browser-use", "--mcp"],
+      "env": {
+        "OPENAI_API_KEY": "${OPENAI_API_KEY}",
+        "PLAYWRIGHT_BROWSERS_PATH": "/opt/pw-browsers",
+        "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD": "1"
+      }
     }
   }
 }
