@@ -5,10 +5,17 @@
         "source": "github",
         "repo": "DietrichGebert/ponytail"
       }
+    },
+    "last30days-skill": {
+      "source": {
+        "source": "github",
+        "repo": "mvanhorn/last30days-skill"
+      }
     }
   },
   "enabledPlugins": [
-    "ponytail@ponytail"
+    "ponytail@ponytail",
+    "last30days@last30days-skill"
   ],
   "hooks": {
     "SessionStart": [
