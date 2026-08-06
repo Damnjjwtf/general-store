@@ -1,5 +1,7 @@
 # Structure Lab — IP Runner component spec
 
+> **Status: DRAFT, unreconciled.** Written from the description in this project's original `AGENTS.md` (a separate two-seat app, a 30-system co-owned corpus, markdown exports, an additive TV extension) — **not** from reading the actual Structure Lab repo. Reconcile against the real repo before trusting §2 and §8; the method (§1, §3–§6) is designed to stand on its own either way.
+
 **Structure is not chosen by taste. It is developed.**
 
 The Lab turns *"what is this story?"* into *"how is it built?"* — by composing competing structural approaches out of **ingredients**, scoring them against the story's own engine, and handing a human the decision. It is the gate between the bible and the first written beat.
