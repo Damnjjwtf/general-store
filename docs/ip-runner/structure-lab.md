@@ -1,99 +1,87 @@
-# Structure Lab — IP Runner component spec
+# Structure Lab — IP Runner component (reconciled)
 
-> **Status: DRAFT, unreconciled.** Written from the description in this project's original `AGENTS.md` (a separate two-seat app, a 30-system co-owned corpus, markdown exports, an additive TV extension) — **not** from reading the actual Structure Lab repo. Reconcile against the real repo before trusting §2 and §8; the method (§1, §3–§6) is designed to stand on its own either way.
-
-**Structure is not chosen by taste. It is developed.**
-
-The Lab turns *"what is this story?"* into *"how is it built?"* — by composing competing structural approaches out of **ingredients**, scoring them against the story's own engine, and handing a human the decision. It is the gate between the bible and the first written beat.
+> **Reconciled 2026-08-06** against the real implementation: `Damnjjwtf/A-Halloween-Story`. It is a **built, working app**, not a plan. An earlier draft of this file was written blind from a secondhand description and got the method substantially wrong; it has been replaced. What's below describes what exists, then what IP Runner has to do to reuse it.
 
 ---
 
-## 1. The core idea: ingredient sets
+## 1. What it actually is
 
-A structure is not invented whole. It is a **combination of choices on a fixed set of axes**. Candidates are different combinations — "ingredient sets" — drawn from a corpus of known structural systems.
+A **two-person structural invention workbook**, built for *A Halloween Story* (present-day Chicago under martial law; Halloween canceled in the inner city, alive in the suburbs; ensemble coming-of-age).
 
-**The axes:**
+Next.js 16 (App Router) · TypeScript · Tailwind v4 · Prisma 7 + Postgres · Vercel. All four milestones shipped, plus public share links.
 
-| Axis | The question | Examples |
+Its governing line — **"the Lab generates *structures*, never scenes"** — is enforced in the prompt itself (`OUTPUT STRUCTURES ONLY. No scenes, no dialogue, no character names, no plot content.`).
+
+## 2. The method
+
+Richer than a candidate generator. The sequence is the product:
+
+1. **Workbook** — 10 designed sections, answered **independently** by two seats (jj, stefan), per-question autosave:
+   `01 Novelty target · 02 Reaction against · 03 Emotional engineering · 04 The clock and the border · 05 Ensemble mechanics · 06 Legibility budget · 07 Ingredients · 08 Ontology · 09 Tonal targets · 10 Tone × structure interaction`
+2. **Compare** — divergence rendered in a single signal color. **Divergence is the fuel:** the engine is told to "treat the divergence as a design tension to resolve, not an error. Name each tension."
+3. **Library / starring** — starring *is* answering. Q7.1 = star 4–8 structure systems; Q10.3 = star 3–5 tone cards.
+   - **30 structure systems** across 8 families: `LINEAR · NONLINEAR · ITERATIVE · ENSEMBLE · SPATIAL · POV · MODULAR · META`. Each card: mechanism / engineers (the audience state it manufactures) / example / failsWhen.
+   - **20 tone cards**: **T1–T12 registers** (palettes — raw material) and **T13–T20 management systems** (engines — rules for how registers move, mix, break). Ids 101–120 to avoid colliding with structure ids 1–30.
+4. **Synthesis (the pairing engine)** — `prompts/synthesis.txt`, hot-editable, Anthropic API:
+   - Build a **morphological box**. Parameters: `time-logic · POV-logic · space-logic · knowledge-logic · ritual-logic · unit-of-repetition · tone-logic`.
+   - **Bisociation:** every candidate must combine systems from **≥2 different families**.
+   - **TRIZ-style contradiction resolution:** each candidate resolves a named tension by stating the contradiction and the resolution.
+   - **Tone is a full parameter, not decoration** — "there is no separate Tone Lab." A candidate's tonal engine must be *keyed to a structural feature* (a station of the clock, a border crossing, a POV handoff).
+   - **Curveball:** an Oblique Strategies card (20-card deck, premise-keyed) can be dealt in as a **hard constraint** every candidate must obey.
+   - **Kill rules** (discard, not score): ignores the clock/border · a known structure in a costume · breaks the stated legibility rule · violates either user's **9.3 tonal kill-rule** (injected as a hard constraint) · has a **detachable tonal engine** ("if it could be swapped out without changing the beat-map, it isn't integrated, it's paint").
+5. **Vote & iterate** — keep / kill / mutate per candidate, with notes and threaded comments. **Mutation notes feed the next run.** Full run history and input snapshots preserved for reproducibility.
+6. **Export** — one-click markdown of answers, stars, runs, votes. Explicitly: *"the thing that gets pasted back into Claude chat for deeper development."*
+
+## 3. Candidate anatomy
+
+The unit of output (`Candidate` model + prompt contract):
+
+| Field | Is |
+| --- | --- |
+| `name` | two or three words, evocative |
+| `engineSummary` | one sentence — the mechanism, stated so a stranger could apply it |
+| `tonalEngine` | which T-card governs register movement, keyed to which structural feature |
+| `clockBorder` | how it load-bears the ritual calendar and the city/suburb gradient |
+| `beatMap` | 6–10 structural stations (structural, not plot) |
+| `failureMode` | the specific way this structure dies in execution |
+| `noveltyCheck` | nearest existing structure + the one real departure — **with an anti-inflation rule**: label recombination as recombination rather than claiming invention |
+| `sourceAnswers` | derivation, cited by question id and system number (`"JJ 4.1, Stefan 9.3; No. 23 × No. 29; T18 × No. 21"`) |
+
+## 4. What I got wrong in the blind draft
+
+Worth recording, because the gaps are the interesting part:
+
+- I proposed a **1–5 scoring rubric**. Wrong shape. The Lab uses **binary kill-rules + human keep/kill/mutate votes**. Discarding on principle beats averaging on six axes, and the vote keeps the decision human.
+- I missed **tone as a first-class box parameter** — the single most distinctive idea in the tool.
+- I missed the **two-player divergence engine**. I framed the Lab as single-operator; its generative fuel is *disagreement between two authors*.
+- I missed **bisociation**, **TRIZ contradiction resolution**, the **Oblique curveball**, the **novelty/honesty check**, **derivation traceability**, and the **mutation→next-run loop**.
+- My axes were TV-shaped (engine / episode-shape / season-arc / braiding). The Lab's are more fundamental and film-shaped (time / POV / space / knowledge / ritual / unit-of-repetition / tone). **That gap is real and is the actual work for General Store** — see §6.
+
+## 5. Reuse verdict: wrap it, don't rebuild it
+
+The earlier open question (wrap vs. single-seat fork) is settled by the code: **wrap it.** The method is sound, tested, and the export was *designed* to hand off to Claude. Rebuilding would discard the corpus, the prompt, and the tuning.
+
+**The contract:** the Lab's export markdown is the interface. A consuming project parses `## Synthesis runs` → candidates → `structure/candidates.md`, preserving names as stable ids and keeping `failureMode`, `noveltyCheck`, and `sourceAnswers` intact (they're the honesty of the thing).
+
+## 6. What must change for a second project
+
+The Lab is currently **hard-wired to A Halloween Story** in four specific places. Generalizing it is the whole job:
+
+| Hard-wired | Where | Fix |
 | --- | --- | --- |
-| `engine` | what renewably generates story every week? | a shop that draws the town · a case · a recurring problem in new dress |
-| `episode_shape` | what is the weekly unit? | cold-open + 4 acts · self-completing + spine · dual-track |
-| `season_arc` | what finite change runs underneath? | taste meets scale · the sale · the succession |
-| `braiding` | how do A/B/C interlock? | A engine / B relationship / C object-runner |
-| `pov` | whose eyes? | single-lead · ensemble · dual |
-| `time` | how does it move? | linear · dual-period · flashback spine |
-| `signature` | how does the show's move land weekly? | an object is explained and something harder gets explained with it |
-| `pressure` | how is the antagonism *structural*, not just thematic? | standing offer to buy · a rival who is right · encroachment |
+| Fixed premise constraints (ritual clock, border, contested ritual, ensemble) | `prompts/synthesis.txt` header | Load per-project constraints from config, not the prompt body |
+| `clockBorder` — a premise-specific column | `prisma/schema.prisma`, `Candidate` | Generalize to a named `premiseAnchors` field (label + value per project) |
+| Question wording ("Halloween-set movies", "the martial-law material") | `content/workbook.ts` | Split into premise-neutral spine + per-project overrides |
+| Oblique deck keyed to clock/border | `content/oblique.ts` | Per-project deck; keep the "structural provocation, not mood" rule |
+| Two fixed seats (`jj`, `stefan`) | `lib/session.ts`, seed | Seat count as config — General Store is single-seat |
 
-Change one axis, get a materially different show. That's the Lab's whole leverage: it makes the choice **explicit and comparable** instead of vibes.
+**Genuinely portable as-is:** the 30-system library (Three-Act → Kishōtenketsu → Rashomon → ritual-calendar; nothing Halloween-specific), the 20 tone cards, the morphological-box method, the kill rules, the candidate anatomy, and the export format.
 
-## 2. The corpus
+**The additive piece General Store needs:** the library is **film-oriented**. A one-hour series wants series-native systems — A/B/C-story braiding, cold-open discipline, series engine vs. season arc, procedural-with-a-spine. Per the original brief this is a **data addition to the library, not a schema change. Additive only — never modify the shared 30-system corpus** (it's co-owned).
 
-- **Base corpus (30 structural systems)** — existing, **co-owned, additive-only. Never modify it.** The Lab reads from it; it does not write to it.
-- **TV corpus extension** — series-native systems layered on top: A/B/C-story braiding, cold-open discipline, series engine vs. season arc, procedural-with-a-spine. **A data addition, not a schema change.**
+## 7. Contracts with the rest of IP Runner
 
-## 3. The loop
-
-1. **Frame.** State what the structure must carry — the engine, the tone, the pressure. One paragraph, from `bible/premise.md`.
-2. **Draw.** For each axis, pull 2–4 viable options from the corpus.
-3. **Compose.** Combine into **2–4 candidates**, each with a stable id (`S-A`, `S-B`, …). Candidates describe *structure*, never plot.
-4. **Score.** Run every candidate through the rubric (§5). Scores are an argument, not a verdict.
-5. **Stress.** For each candidate, write its **characteristic failure mode** — the way this specific structure dies at episode 8. A candidate with no named failure mode hasn't been thought about.
-6. **Hand off.** Write `structure/candidates.md`. **The Lab does not choose.**
-7. **Lock.** A human writes `structure/selected.md`. Beats unblock.
-
-## 4. Candidate schema
-
-```yaml
-id: S-A
-name: <short handle>
-structural_logline: <how it is built — not what happens>
-engine: <the renewable generator>
-episode_shape: <the weekly unit>
-season_arc: <the finite change underneath>
-braiding: <A/B/C pattern>
-pov: <single-lead | ensemble | dual>
-time: <linear | dual-period | flashback spine>
-signature_beat: <how the show's move lands each week>
-pressure: <how antagonism is structurally present>
-failure_mode: <how this structure dies at episode 8>
-```
-
-## 5. The rubric
-
-Score 1–5. The point isn't the total — it's **where candidates diverge.** A candidate that wins on 4 and collapses on 1 is usually the honest answer, and the low score tells you what to shore up.
-
-| # | Criterion | Asks |
-| --- | --- | --- |
-| 1 | **Engine durability** | can it produce 40 episodes without repeating itself? |
-| 2 | **Arc pressure** | is there a finite change with real stakes underneath? |
-| 3 | **Signature fidelity** | does the show's move happen *naturally* weekly, or must it be forced? |
-| 4 | **Ensemble load** | does the room have reasons to keep coming back? |
-| 5 | **Antagonism** | is the pressure structural, or just a theme we assert? |
-| 6 | **Producibility** | standing sets and contained days, or sprawl? |
-
-**Rule:** any criterion scoring ≤2 must be answered in prose, not shrugged off. That answer usually becomes the next candidate.
-
-## 6. Contracts with the rest of IP Runner
-
-- **Upstream — the gate.** Candidates are **premise-dependent**. The Lab does not run until `bible/premise.md` names a premise.
-- **Downstream — the gate.** No beats, no pages until `structure/selected.md` exists and is locked.
-- **Graph.** `Episode` is a node type (`bible/graph.md`). The locked structure defines what an Episode *is*, and the invariant **"every Episode contains at least one `Object --explains--> Motif` path"** is criterion 3 made queryable.
-- **Want Engine.** Structure carries want. The Lab decides *where* want gets expressed (per-episode vs. per-season); the Want Engine decides *what* the want is. Seam, not overlap.
-- **Import.** A Lab session dump parses into `structure/candidates.md` with stable ids preserved.
-
-## 7. Worked example — format only
-
-Illustrative, **not seeded for this project** (premise is open). Shows the shape a real candidate takes:
-
-> **`S-A` — The Town and the Store.** Ensemble dramedy; the shop is the engine, the town supplies the week.
-> *engine:* anyone who walks in brings a want they can't name · *episode_shape:* cold open on an object, self-completing customer story + spine · *braiding:* A customer / B ensemble relationship / C an object runner · *pov:* ensemble · *time:* linear · *signature:* the counter scene · *pressure:* the department store's standing offer · *failure_mode:* customer-of-the-week calcifies into formula by ep 8; the spine starves.
-
-## 8. Open decision — how the Lab is instantiated
-
-The existing Structure Lab is a **two-seat app with a co-owned corpus**. For IP Runner, two paths:
-
-- **(a) Wrap it.** IP Runner consumes the existing Lab's exports. Corpus stays untouched and co-owned; IP Runner owns only the import + candidate/rubric contract above.
-- **(b) Single-seat fork.** IP Runner reimplements the Lab against this spec, with its own additive TV corpus. Cleaner as a product; duplicates the corpus question.
-
-**Lean: (a) now, (b) if IP Runner ships as a product.** The spec above is deliberately app-agnostic — it's a data contract plus a method, so either path satisfies it.
+- **Upstream gate.** Candidates are premise-dependent. No Lab run until `bible/premise.md` names a premise — the Lab literally needs a fixed-constraints block to function.
+- **Downstream gate.** No beats until `structure/selected.md` is locked.
+- **Graph.** A locked structure defines what an `Episode` is (`bible/graph.md`); a beat-map station becomes the unit an Episode node holds.
+- **Want Engine.** Structure decides *where* want is expressed; the Want Engine decides *what* it is. Seam, not overlap — and §2's "emotional engineering" section is where the two touch.
