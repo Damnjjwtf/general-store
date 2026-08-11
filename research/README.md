@@ -11,4 +11,5 @@ The one guardrail on real people and brands lives in `legal/notes.md`. It is sho
 ## Contents
 
 - `chuck-williams.md` — the primary touchstone: the real merchant and the specialty-retail revolution, as ore.
+- `south-side-1970s-dossier.md` — deep sourced dossier on the 1970s South Side Chicago premise candidate: the elevation thesis and its respectability-politics fault line, the Ebony Test Kitchen, Chatham, Operation PUSH, Seaway Bank, Marshall Field's, Crate & Barrel, and a six-proposition theory of the small shop as counter-apparatus. Carries its own confidence labels and flagged gaps.
 - `sources.md` — an informal list of where the touchstone material came from. Provenance for our own use, nothing more.
