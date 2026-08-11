@@ -4,7 +4,7 @@ Structure is developed, not chosen by taste. Competing structural approaches are
 
 ## Files
 
-- `candidates.md` — competing structural approaches with stable ids. **Not seeded yet:** candidates are premise-dependent, and the premise is open (`bible/premise.md`). Written once a Structure Lab session exists.
+- `candidates.md` — competing structural approaches with stable ids. **Unblocked:** the premise locked 2026-08-06 (`bible/premise.md`), so Lab candidates can now be developed. Written once a Structure Lab session exists.
 - `selected.md` — the locked choice. A human decision, not a tool output. **Do not write beats until this exists.**
 
 ## TV-structure lens (applies once candidates exist)

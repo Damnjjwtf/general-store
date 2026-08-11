@@ -10,7 +10,7 @@ You own **prose and world**. See `AGENTS.md` for the tooling side (also yours he
 
 ## 1. What this is, and what it is not
 
-This is invented. The protagonist is a character, free to differ from the real Chuck Williams in name, race, city, era, and life. The premise is deliberately **open** — the reimagining hasn't been chosen yet (a Black protagonist in 1970s Chicago is one live possibility, not a commitment). Nothing in `bible/` should assume a setting until `bible/premise.md` is filled.
+This is invented. The protagonist is a character, free to differ from the real Chuck Williams in name, race, city, era, and life. The premise is **locked** (2026-08-06): a Black proprietor in 1972 Chicago, curating an invented South Side neighborhood's general store into something finer — see `bible/premise.md`. The research is a skeleton, not a script: real city and real dynamics, invented institutions and people (`bible/world/fictionalization.md`).
 
 Two kinds of material, kept apart:
 
@@ -50,7 +50,7 @@ That's the whole gate. It exists once, in `legal/notes.md`, not on every line.
 
 Structure is not chosen by taste. It is developed in **Structure Lab** and locked in `structure/selected.md`.
 
-Candidates are premise-dependent, so none are seeded yet — the premise is open (§1). Once a premise lands, run competing structural approaches through the Lab as ingredient sets, write them to `structure/candidates.md` with stable ids, and only then lock a selection.
+The premise is locked (§1), so the Lab is unblocked: run competing structural approaches through it as ingredient sets, write them to `structure/candidates.md` with stable ids, and only then lock a selection.
 
 Do not write beats until `structure/selected.md` exists and is locked.
 

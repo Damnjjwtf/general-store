@@ -2,7 +2,7 @@
 
 One-hour period **dramedy**. Working title. A **fiction inspired by** Chuck Williams and the specialty-retail revolution — not a biography. The real man is a seed; the protagonist and world are invented.
 
-**Premise is open.** No setting is committed yet (a Black proprietor in 1970s Chicago is one live possibility, not a decision). See `bible/premise.md`.
+**Premise locked (2026-08-06):** Chicago, 1972. A reserved, exacting Black proprietor curates an invented South Side neighborhood's general store into something finer, one object at a time — and every new object on the shelf is a small referendum. See `bible/premise.md` and the skeleton rule in `bible/world/fictionalization.md`.
 
 ## How this repo is organized
 

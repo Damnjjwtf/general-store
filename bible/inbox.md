@@ -5,7 +5,7 @@ Holding pen. Ideas land here fully formed enough not to be lost, but they are **
 ---
 
 ## Steve Schubert — the department store
-**Type:** `Character` (antagonist) · **Edge:** `pressures →` the store · **Captured:** 2026-08-06
+**Type:** `Character` (antagonist) · **Edge:** `pressures →` the store · **Captured:** 2026-08-06 · **Status: READY FOR PROMOTION** — premise locked; he's the face of "the Store downtown" (`premise.md` triangle, `world/fictionalization.md` analogue table). Name still placeholder pending the collision check.
 
 **Function — the personification of *scale*.** Owns the big department store downtown. He is the force the show is actually about, given a face: the recurring antagonist who subverts, appropriates, and outright steals the protagonist's ideas.
 
